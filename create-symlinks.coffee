@@ -13,7 +13,7 @@ module.exports = (grunt, options={}) ->
 			src = process.cwd() + '/' + src if src[0] isnt '/'
 			dest = process.cwd() + '/' + dest if dest[0] isnt '/'
 
-			grunt.log.writeln 'ERROR: source dir does not exist!' if not fs.existsSync(src) # Without a source, all is lost.
+			grunt.log.writeln 'ERROR: source dir does not exist!', src if not fs.existsSync(src) # Without a source, all is lost.
 
 			# We have to put lstatSync in a try, because it gives an error when dest isn't found. We can use fs.lstat, but
 			# we would have to change the for loop to a function call.			

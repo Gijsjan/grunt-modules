@@ -1,3 +1,5 @@
+# DEPRECATED Use grunt-newer instead!
+
 module.exports = (grunt, options={}) ->
 	grunt.event.on 'watch', (action, srcPath) ->
 		if srcPath.substr(0, 3) is 'src' # Make sure file comes from src/		
