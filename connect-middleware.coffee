@@ -1,7 +1,7 @@
 fs = require 'fs'
 path = require 'path'
 
-connect_middleware = (connect, options) ->
+module.exports = (connect, options) ->
 	[
 		(req, res, next) ->
 			contentTypesMap =
