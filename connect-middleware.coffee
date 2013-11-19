@@ -4,7 +4,7 @@ path = require 'path'
 module.exports = (connect, options) ->
 	[
 		(req, res, next) ->
-			contentTypesMap =
+			contentTypeMap =
 				'.html': 'text/html'
 				'.css': 'text/css'
 				'.js': 'application/javascript'
@@ -19,7 +19,7 @@ module.exports = (connect, options) ->
 				filePath = path.join options.base, reqUrl
 				
 				res.writeHead 200,
-					'Content-Type': contentTypesMap[extName] || 'text/html'
+					'Content-Type': contentTypeMap[extName] || 'text/html'
 					'Content-Length': fs.statSync(filePath).size
 
 				readStream = fs.createReadStream filePath
@@ -27,7 +27,10 @@ module.exports = (connect, options) ->
 			
 			extName = path.extname req.url
 
-			if contentTypesMap[extName]?
+			# If request is a file and it doesnt exist, pass req to connect
+			if contentTypeMap[extName]? and not fs.existsSync(options.base + req.url)
+				next()
+			else if contentTypeMap[extName]?
 				sendFile req.url
 			else
 				sendFile 'index.html'
