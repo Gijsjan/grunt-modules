@@ -9,6 +9,7 @@ module.exports = (connect, options) ->
 				'.css': 'text/css'
 				'.js': 'application/javascript'
 				'.map': 'application/javascript' # js source maps
+				'.json': 'application/json'
 				'.gif': 'image/gif'
 				'.jpg': 'image/jpeg'
 				'.jpeg': 'image/jpeg'
